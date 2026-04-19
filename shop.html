@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - LuxeHair</title>
+    <link rel="preconnect" href="https://cdn.prod.website-files.com/6593ad1a04d90dc84a5d7cc7/6668651f753ee7424bc4d350_Wigs%20by%20Mandeville.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="site-screen">
+    <main class="site-main">
+        <div class="shop-toolbar">
+            <label class="visually-hidden" for="search-input">Search wigs by name, style, or keyword</label>
+            <div class="search-wrap">
+                <input type="search" id="search-input" class="search-field" placeholder="Search by name, texture, or keyword" autocomplete="off">
+            </div>
+        </div>
+
+        <section>
+            <h2>All premium wigs</h2>
+            <div class="product-grid shop-grid" id="shop-grid"></div>
+        </section>
+    </main>
+
+    <div id="product-modal" class="product-modal" hidden>
+        <div class="product-modal-backdrop" data-close-modal></div>
+        <div class="product-modal-panel" role="dialog" aria-modal="true">
+            <button type="button" class="product-modal-close" data-close-modal aria-label="Close">&times;</button>
+            
+            <div class="modal-carousel">
+                <div class="modal-carousel-track" id="modal-track"></div>
+            </div>
+
+            <div id="modal-product-body" class="product-modal-body"></div>
+
+            <div class="modal-options">
+                <div>
+                    <p style="margin-bottom:6px; font-weight:600;">Quantity</p>
+                    <div class="quantity-group">
+                        <button type="button" onclick="changeQuantity(-1)">–</button>
+                        <input type="text" id="modal-quantity" value="1" readonly>
+                        <button type="button" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div>
+                    <p style="margin-bottom:6px; font-weight:600;">Color</p>
+                    <div class="color-options" id="color-options"></div>
+                </div>
+            </div>
+
+            <div id="modal-prices" style="padding: 0 1.5rem 1rem;"></div>
+
+            <div class="modal-actions">
+                <button onclick="addToCartFromModal('buy')" class="btn" style="flex:1;">Buy Now</button>
+                <button onclick="addToCartFromModal('rent')" class="btn btn-rent" style="flex:1;">Rent Now</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="images/logo.jpeg" alt="Strands" class="logo-img">
+            <span class="footer-brand-name">Strands</span>
+        </div>        <nav class="footer-nav" aria-label="Footer">
+            <a href="shop.html">Shop</a>
+            <a href="index.html#how-it-works">How it works</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="support.html">Support</a>
+        </nav>
+        <div class="footer-meta-row">
+            <div class="footer-social">
+                <a href="https://www.instagram.com/hairsensation_gh/?hl=en" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.6" r="1"></circle></svg>
+                </a>
+                <a href="https://wa.me/233541756722" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12Z"></path><path d="M9 9.7c.3-.7.8-.7 1-.7h.6c.2 0 .4 0 .5.4l.7 1.6c.1.2.1.4 0 .6l-.3.5c-.1.1-.2.3-.1.5.4.8 1.2 1.6 2.1 2 .2.1.4 0 .5-.1l.5-.6c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.6c0 .2 0 .8-.7 1.1-.7.3-1.5.3-2.1.1-2.6-.9-4.8-3-5.6-5.7-.2-.6-.2-1.4.1-2.1Z"></path></svg>
+                </a>
+                <a href="#" aria-label="X">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.5l3.6 5.2L16.6 4H20l-6.2 7.1L20.5 20H16l-3.9-5.7L7 20H3.5l6.3-7.3z"></path></svg>
+                </a>
+            </div>
+            <span class="footer-madeby">Made by Frost</span>
+        </div>
+        <hr class="footer-rule">
+        <p class="footer-copy">&copy; 2026 LuxeHair. All rights reserved.</p>
+    </footer>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+        <a href="index.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20H4z"></path><path d="M9 20v-5h6v5"></path></svg></span><span>Home</span></a>
+        <a href="shop.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 10h-13z"></path><path d="M9 7V5a3 3 0 1 1 6 0v2"></path></svg></span><span>Shop</span></a>
+        <a href="checkout.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h2l2 11h10l2-8H7"></path><circle cx="10" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle></svg></span><span>Cart</span></a>
+        <a href="support.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20c4.4 0 8-3.1 8-7s-3.6-7-8-7-8 3.1-8 7c0 1.8.8 3.4 2.2 4.7V20l2.6-1.5A10 10 0 0 0 12 20Z"></path></svg></span><span>Help</span></a>
+    </nav>
+    
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let currentProduct = null;
+        let currentQuantity = 1;
+        let carouselInterval = null;
+
+        function openProductModal(productId) {
+            currentProduct = window.products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            currentQuantity = 1;
+            document.getElementById('modal-quantity').value = 1;
+
+            const track = document.getElementById('modal-track');
+            track.innerHTML = currentProduct.images.map(src => `
+                <img src="${src}" alt="${currentProduct.name}">
+            `).join('');
+
+            const body = document.getElementById('modal-product-body');
+            body.innerHTML = `
+                <h2>${currentProduct.name}</h2>
+                <p style="color:#aaa; line-height:1.5;">${currentProduct.description}</p>
+                <div style="color:#d4af37; font-size:1.25rem; margin:10px 0;">
+                    ${'★'.repeat(Math.floor(currentProduct.rating))} ${currentProduct.rating}
+                </div>
+            `;
+
+            document.getElementById('modal-prices').innerHTML = `
+                <p class="price-buy">Buy: <strong>GHS ${currentProduct.buyPrice}</strong></p>
+                <p class="price-rent">Rent: <strong>GHS ${currentProduct.rentPrice}</strong> (${currentProduct.rentDays})</p>
+            `;
+
+            const colorDiv = document.getElementById('color-options');
+            colorDiv.innerHTML = `
+                <div class="color-dot selected" data-color="Natural Black" style="background:#111" onclick="selectColor(this)"></div>
+                <div class="color-dot" data-color="Chestnut Brown" style="background:#8B4513" onclick="selectColor(this)"></div>
+                <div class="color-dot" data-color="Honey Blonde" style="background:#F4A460" onclick="selectColor(this)"></div>
+            `;
+
+            document.getElementById('product-modal').hidden = false;
+            document.body.style.overflow = 'hidden';
+
+            startAutoCarousel();
+        }
+
+        function startAutoCarousel() {
+            if (carouselInterval) clearInterval(carouselInterval);
+            
+            let index = 0;
+            const track = document.getElementById('modal-track');
+            
+            carouselInterval = setInterval(() => {
+                if (document.getElementById('product-modal').hidden) {
+                    clearInterval(carouselInterval);
+                    return;
+                }
+                index = (index + 1) % 3;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }, 3000);
+        }
+
+        function changeQuantity(delta) {
+            currentQuantity = Math.max(1, currentQuantity + delta);
+            document.getElementById('modal-quantity').value = currentQuantity;
+        }
+
+        function selectColor(el) {
+            document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function addToCartFromModal(type) {
+            if (!currentProduct) return;
+            const selectedDot = document.querySelector('.color-dot.selected');
+            const selectedColor = selectedDot ? selectedDot.dataset.color : 'Natural Black';
+            window.addToCart(currentProduct.id, type, { quantity: currentQuantity, color: selectedColor });
+            alert(`${currentQuantity} × ${currentProduct.name} (${type.toUpperCase()}) added to cart!`);
+            document.getElementById('product-modal').hidden = true;
+            document.body.style.overflow = '';
+            updateCartCount(); 
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            if (modal) {
+                modal.hidden = true;
+                document.body.style.overflow = '';
+                if (carouselInterval) clearInterval(carouselInterval);
+            }
+        }
+
+        const shopGrid = document.getElementById('shop-grid');
+        window.products.forEach((product) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'shop-tile';
+            btn.dataset.productId = String(product.id);
+            btn.dataset.search = [product.name, product.description, product.keywords || ''].join(' ').toLowerCase();
+            btn.innerHTML = window.shopTileHTML(product);
+            btn.addEventListener('click', () => openProductModal(product.id));
+            shopGrid.appendChild(btn);
+        });
+
+        document.querySelectorAll('[data-close-modal]').forEach(el => {
+            el.addEventListener('click', closeProductModal);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProductModal();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('tab-shop').classList.add('active');
+
+            function updateCartCount() {
+                const countEl = document.getElementById('cart-count-tab');
+                if (countEl) {
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    countEl.textContent = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+                }
+            }
+
+            updateCartCount();
+
+            window.addEventListener('storage', updateCartCount);
+        });
+    </script>
+</body>
+</html>

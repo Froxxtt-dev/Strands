@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - LuxeHair</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="site-screen checkout-screen">
+    <main class="site-main checkout-page">
+        <header class="checkout-hero">
+            <h1>Checkout</h1>
+            <p>Complete your order in three quick steps.</p>
+        </header>
+
+        <div class="checkout-steps" id="checkout-steps" aria-label="Checkout progress">
+            <button type="button" class="is-current" data-step="1">1. Cart</button>
+            <button type="button" data-step="2">2. Details</button>
+            <button type="button" data-step="3">3. Payment</button>
+        </div>
+
+        <!-- STEP 1: Cart -->
+        <section class="checkout-panel step-panel" data-panel="1">
+            <h2>Your cart</h2>
+            <div id="cart-items"></div>
+            <div id="total" role="status"></div>
+            <div class="trust-strip">
+                <span>MoMo ready</span>
+                <span>Accra delivery 1-2 days</span>
+            </div>
+            <div class="step-actions">
+                <button type="button" class="btn" id="to-details">Continue to details</button>
+            </div>
+        </section>
+
+        <!-- STEP 2: Delivery Details -->
+        <section class="checkout-panel step-panel is-hidden" data-panel="2">
+            <h2>Delivery details</h2>
+            <form id="details-form" class="form-stack">
+                <label for="cust-name">Full name</label>
+                <input id="cust-name" type="text" required>
+                <label for="cust-phone">Phone number</label>
+                <input id="cust-phone" type="tel" placeholder="055 123 4567" required>
+                <label for="cust-address">Delivery address</label>
+                <input id="cust-address" type="text" required>
+            </form>
+            <div class="step-actions between">
+                <button type="button" class="btn btn-rent" id="back-cart">Back to cart</button>
+                <button type="button" class="btn" id="to-payment">Continue to payment</button>
+            </div>
+        </section>
+
+        <!-- STEP 3: Payment (your exact premium design) -->
+        <section class="checkout-panel step-panel is-hidden" data-panel="3" style="padding:1.8rem 1.5rem;">
+            <h2 class="checkout-panel-title" style="font-size:1.65rem;color:#d4af37;margin-bottom:1.4rem;text-align:center;">Payment Method</h2>
+
+            <div class="space-y-4" id="payment-methods">
+                <label class="payment-option-card" style="display:flex;align-items:flex-start;gap:16px;padding:20px;border:2px solid transparent;border-radius:20px;background:#1a1a1a;cursor:pointer;transition:all 0.3s;">
+                    <input type="radio" name="payment" value="momo" checked style="margin-top:4px;width:22px;height:22px;accent-color:#d4af37;">
+                    <div class="flex-1">
+                        <p class="payment-option-title" style="font-size:1.15rem;font-weight:600;color:#fff;margin:0;">Mobile Money</p>
+                        <p class="payment-option-subtitle" style="color:#aaa;font-size:0.95rem;margin:4px 0 0;">MTN MoMo, Vodafone Cash, AirtelTigo</p>
+                    </div>
+                </label>
+
+                <label class="payment-option-card" style="display:flex;align-items:flex-start;gap:16px;padding:20px;border:2px solid transparent;border-radius:20px;background:#1a1a1a;cursor:pointer;transition:all 0.3s;">
+                    <input type="radio" name="payment" value="pod" style="margin-top:4px;width:22px;height:22px;accent-color:#d4af37;">
+                    <div class="flex-1">
+                        <p class="payment-option-title" style="font-size:1.15rem;font-weight:600;color:#fff;margin:0;">Pay on Delivery</p>
+                        <p class="payment-option-subtitle" style="color:#aaa;font-size:0.95rem;margin:4px 0 0;">Cash or card on arrival</p>
+                    </div>
+                </label>
+
+                <label class="payment-option-card" style="display:flex;align-items:flex-start;gap:16px;padding:20px;border:2px solid transparent;border-radius:20px;background:#1a1a1a;cursor:pointer;transition:all 0.3s;">
+                    <input type="radio" name="payment" value="card" style="margin-top:4px;width:22px;height:22px;accent-color:#d4af37;">
+                    <div class="flex-1">
+                        <p class="payment-option-title" style="font-size:1.15rem;font-weight:600;color:#fff;margin:0;">Card Payment</p>
+                        <p class="payment-option-subtitle" style="color:#aaa;font-size:0.95rem;margin:4px 0 0;">Visa, Mastercard</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Mobile Money Form (appears under option when selected) -->
+            <div id="mobile-form" class="payment-form-box" style="margin-top:24px;background:#1a1a1a;border-radius:20px;padding:24px;border:1px solid #333;display:block;">
+                <div style="margin-bottom:20px;">
+                    <label style="display:block;margin-bottom:8px;font-size:0.9rem;color:#ccc;">Mobile Money Number</label>
+                    <input type="tel" id="momo-phone" value="+233 24 123 4567" style="width:100%;padding:14px 16px;background:#121212;border:1px solid #444;border-radius:12px;color:#fff;font-size:1.05rem;">
+                </div>
+                <div>
+                    <label style="display:block;margin-bottom:8px;font-size:0.9rem;color:#ccc;">Network</label>
+                    <select id="momo-network" style="width:100%;padding:14px 16px;background:#121212;border:1px solid #444;border-radius:12px;color:#fff;font-size:1.05rem;">
+                        <option>MTN MoMo</option>
+                        <option>Vodafone Cash</option>
+                        <option>AirtelTigo Money</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Card Form (appears under option when selected) -->
+            <div id="card-form" class="payment-form-box" style="margin-top:24px;background:#1a1a1a;border-radius:20px;padding:24px;border:1px solid #333;display:none;">
+                <div style="margin-bottom:20px;">
+                    <label style="display:block;margin-bottom:8px;font-size:0.9rem;color:#ccc;">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" style="width:100%;padding:14px 16px;background:#121212;border:1px solid #444;border-radius:12px;color:#fff;font-size:1.05rem;">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label style="display:block;margin-bottom:8px;font-size:0.9rem;color:#ccc;">Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY" style="width:100%;padding:14px 16px;background:#121212;border:1px solid #444;border-radius:12px;color:#fff;font-size:1.05rem;">
+                    </div>
+                    <div>
+                        <label style="display:block;margin-bottom:8px;font-size:0.9rem;color:#ccc;">CVV</label>
+                        <input type="text" id="card-cvv" placeholder="123" maxlength="4" style="width:100%;padding:14px 16px;background:#121212;border:1px solid #444;border-radius:12px;color:#fff;font-size:1.05rem;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="notice-box" style="background:#2a2418;border:1px solid #d4af37;color:#e8d4a8;margin-top:24px;padding:16px;border-radius:12px;">
+                Rentals require a refundable deposit • Late returns attract extra charges
+            </div>
+
+            <button id="pay-button" onclick="completeCheckout()" class="pay-now-btn" style="margin-top:32px;width:100%;background:linear-gradient(#d4af37,#c9a227);color:#000;padding:18px;font-size:1.2rem;font-weight:700;border-radius:9999px;border:none;box-shadow:0 8px 25px rgba(212,175,55,0.4);">
+                <span id="pay-text">Pay Now</span>
+                <span id="pay-total" class="pay-total-amount" style="margin-left:8px;"></span>
+            </button>
+
+            <p class="secure-note" style="text-align:center;margin-top:16px;font-size:0.85rem;color:#888;">🔒 Secure checkout • Your data is protected</p>
+        </section>
+    </main>
+
+    <!-- Order Success Popup -->
+    <div class="order-success-overlay" id="order-success-overlay" hidden>
+        <div class="order-success-backdrop" data-close-order></div>
+        <article class="order-success-card" role="dialog" aria-modal="true" aria-labelledby="order-success-heading">
+            <div class="order-success-check">✓</div>
+            <h2 class="order-success-heading" id="order-success-heading">Order placed successfully!</h2>
+            <p class="order-success-sub">Thank you for choosing LuxeHair. We will contact you shortly.</p>
+            <div class="order-success-body" id="order-success-body"></div>
+            <button type="button" class="btn order-success-cta" data-close-order>Continue shopping</button>
+        </article>
+    </div>
+
+    <!-- EXACT FOOTER + BOTTOM NAV YOU PROVIDED -->
+        <footer class="site-footer">
+            <div class="footer-brand">
+                <img src="images/logo.jpeg" alt="Strands" class="logo-img">
+                <span class="footer-brand-name">Strands</span>
+            </div>
+        <nav class="footer-nav" aria-label="Footer">
+            <a href="shop.html">Shop</a>
+            <a href="index.html#how-it-works">How it works</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="support.html">Support</a>
+        </nav>
+        <div class="footer-meta-row">
+            <div class="footer-social">
+                <a href="https://www.instagram.com/hairsensation_gh/?hl=en" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.6" r="1"></circle></svg></a>
+                <a href="https://wa.me/233541756722" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12Z"></path><path d="M9 9.7c.3-.7.8-.7 1-.7h.6c.2 0 .4 0 .5.4l.7 1.6c.1.2.1.4 0 .6l-.3.5c-.1.1-.2.3-.1.5.4.8 1.2 1.6 2.1 2 .2.1.4 0 .5-.1l.5-.6c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.6c0 .2 0 .8-.7 1.1-.7.3-1.5.3-2.1.1-2.6-.9-4.8-3-5.6-5.7-.2-.6-.2-1.4.1-2.1Z"></path></svg></a>
+                <a href="#" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.5l3.6 5.2L16.6 4H20l-6.2 7.1L20.5 20H16l-3.9-5.7L7 20H3.5l6.3-7.3z"></path></svg></a>
+            </div>
+            <span class="footer-madeby">Made by Frost</span>
+        </div>
+        <hr class="footer-rule">
+        <p class="footer-copy">&copy; 2026 LuxeHair. All rights reserved.</p>
+</body>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+    <a href="index.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20H4z"></path><path d="M9 20v-5h6v5"></path></svg></span><span>Home</span></a>
+    <a href="shop.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 10h-13z"></path><path d="M9 7V5a3 3 0 1 1 6 0v2"></path></svg></span><span>Shop</span></a>
+    <a href="checkout.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h2l2 11h10l2-8H7"></path><circle cx="10" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle></svg></span><span>Cart</span></a>
+    <a href="support.html"><span class="bn-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20c4.4 0 8-3.1 8-7s-3.6-7-8-7-8 3.1-8 7c0 1.8.8 3.4 2.2 4.7V20l2.6-1.5A10 10 0 0 0 12 20Z"></path></svg></span><span>Help</span></a>
+</nav>
+
+    <a href="checkout.html" class="floating-cart-btn" aria-label="Open cart">🛒<span id="cart-count">0</span></a>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function togglePaymentForms() {
+            const selected = document.querySelector('input[name="payment"]:checked').value;
+            document.getElementById('mobile-form').style.display = selected === 'momo' ? 'block' : 'none';
+            document.getElementById('card-form').style.display = selected === 'card' ? 'block' : 'none';
+        }
+
+        function validatePaymentInputs() {
+            const selected = document.querySelector('input[name="payment"]:checked').value;
+            if (selected === 'momo') {
+                const phone = document.getElementById('momo-phone').value.trim();
+                if (!phone) {
+                    alert('Please enter your Mobile Money number.');
+                    return false;
+                }
+            }
+            if (selected === 'card') {
+                const number = document.getElementById('card-number').value.trim();
+                const expiry = document.getElementById('card-expiry').value.trim();
+                const cvv = document.getElementById('card-cvv').value.trim();
+                if (!number || !expiry || !cvv) {
+                    alert('Please complete all card details.');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function completeCheckout() {
+            if (window.getCart().length === 0) return alert("Cart is empty!");
+            const form = document.getElementById('details-form');
+            if (!form.checkValidity()) return form.reportValidity();
+            if (!validatePaymentInputs()) return;
+
+            const btn = document.getElementById('pay-button');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Processing...`;
+
+            setTimeout(() => {
+                const name = document.getElementById('cust-name').value.trim();
+                const phone = document.getElementById('cust-phone').value.trim();
+                const address = document.getElementById('cust-address').value.trim();
+                const pay = document.querySelector('input[name="payment"]:checked').value;
+
+                const cart = window.getCart();
+                const subtotal = cart.reduce((s, i) => s + (i.price * (Number(i.quantity)||1)), 0);
+                const orderId = 'LH-' + Date.now().toString(36).toUpperCase().slice(-10);
+
+                showOrderSuccess({
+                    orderId, name, phone, address, pay,
+                    cart: cart.map(i => ({name: i.name, type: i.type, price: i.price, quantity: Number(i.quantity)||1})),
+                    subtotal
+                });
+
+                window.clearCart();
+                updateCartCount();
+                renderCart();
+                btn.disabled = false;
+                btn.innerHTML = `<span id="pay-text">Pay Now</span><span id="pay-total" class="pay-total-amount" style="margin-left:8px;"></span>`;
+            }, 1400);
+        }
+
+        function renderCart() {
+            const div = document.getElementById('cart-items');
+            const totalEl = document.getElementById('total');
+            const cart = window.getCart() || [];
+            if (!cart.length) {
+                div.innerHTML = `<p class="empty-cart-hint">Your cart is empty. <a href="shop.html">Browse wigs</a></p>`;
+                totalEl.innerHTML = '';
+                return;
+            }
+            let html = '', total = 0;
+            cart.forEach(item => {
+                const qty = Number(item.quantity) || 1;
+                const line = item.price * qty;
+                html += `<div class="cart-line"><div><strong>${item.name}</strong><br><span class="cart-line-type">${item.type.toUpperCase()} × ${qty}</span></div><div class="cart-line-price">GHS ${line}</div></div>`;
+                total += line;
+            });
+            div.innerHTML = html;
+            totalEl.innerHTML = `Subtotal <strong>GHS ${total}</strong>`;
+        }
+
+        function showOrderSuccess(order) {
+            const overlay = document.getElementById('order-success-overlay');
+            const body = document.getElementById('order-success-body');
+            const payText = order.pay === 'momo' ? 'Mobile Money' : order.pay === 'pod' ? 'Pay on Delivery' : 'Card Payment';
+            const itemsHTML = order.cart.map(i => `<li><span>${i.name}</span><span class="order-line-meta">${i.type.toUpperCase()} × ${i.quantity} — GHS ${i.price * i.quantity}</span></li>`).join('');
+            body.innerHTML = `
+                <dl class="order-detail-list">
+                    <div><dt>Order ID</dt><dd>${order.orderId}</dd></div>
+                    <div><dt>Name</dt><dd>${order.name}</dd></div>
+                    <div><dt>Phone</dt><dd>${order.phone}</dd></div>
+                    <div><dt>Address</dt><dd>${order.address}</dd></div>
+                    <div><dt>Payment</dt><dd>${payText}</dd></div>
+                    <div><dt>Subtotal</dt><dd>GHS ${order.subtotal}</dd></div>
+                </dl>
+                <p class="order-items-label">Items</p>
+                <ul class="order-items-list">${itemsHTML}</ul>
+            `;
+            overlay.hidden = false;
+        }
+
+        function closeOrderSuccess() {
+            document.getElementById('order-success-overlay').hidden = true;
+            showStep(1);
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step-panel').forEach(p => p.classList.toggle('is-hidden', Number(p.dataset.panel) !== step));
+            document.querySelectorAll('#checkout-steps button').forEach(b => b.classList.toggle('is-current', Number(b.dataset.step) === step));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+            updateCartCount();
+            togglePaymentForms();
+
+            document.getElementById('to-details').addEventListener('click', () => showStep(2));
+            document.getElementById('back-cart').addEventListener('click', () => showStep(1));
+            document.getElementById('to-payment').addEventListener('click', () => {
+                const form = document.getElementById('details-form');
+                if (!form.checkValidity()) return form.reportValidity();
+                showStep(3);
+            });
+
+            document.querySelectorAll('input[name="payment"]').forEach(r => r.addEventListener('change', togglePaymentForms));
+            document.querySelectorAll('[data-close-order]').forEach(el => el.addEventListener('click', closeOrderSuccess));
+        });
+    </script>
+</body>
+</html>
