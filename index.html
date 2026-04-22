@@ -10,9 +10,14 @@
 <body class="site-screen">
     <header class="home-top-nav" aria-label="Top navigation">
         <a href="index.html" class="home-top-wordmark">
-            <img src="images/logo.jpeg" alt="Strands" class="logo-img">
-            <span class="brand-text">Strands</span>
+            <img src="images/logo.png" alt="Strands" class="logo-img">
         </a>
+        <nav class="desktop-section-nav" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="support.html">Support</a>
+        </nav>
         <div class="home-top-actions">
             <button type="button" id="top-search-toggle" class="home-top-icon" aria-label="Toggle search" aria-expanded="false">&#8981;</button>
             <button type="button" id="liked-toggle" class="home-top-icon home-top-like" aria-label="View liked wigs" aria-expanded="false">&#9825;<span id="like-count">0</span></button>
@@ -34,11 +39,13 @@
     <main class="site-main home-page">
         <section class="hero hero-like-ref" style="background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)), url('https://t3.ftcdn.net/jpg/05/98/95/54/360_F_598955436_fR6FtCniLZdyHclQs6m9sZssx7i5haFx.jpg') center/cover no-repeat;">
             <div class="hero-media">
-                <div class="hero-overlay">
-                    <p class="hero-tag">Luxury hair, your way... buy it or rent it</p>
-                    <h1>Synthetic Hair Wigs</h1>
-                    <p class="hero-sub">Shop premium wigs with natural finish, rich volume, and fast delivery in Ghana.</p>
-                    <a href="shop.html"><button class="btn" type="button">Explore now</button></a>
+                <div class="hero-overlay" style="max-width: 920px; margin: 0 auto; padding: 2rem 5% 3.5rem;">
+                    <p class="hero-tag">LUXURY HAIR, YOUR WAY... BUY IT OR RENT IT</p>
+                    <h1 style="font-size: clamp(2.35rem, 6vw, 4.4rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0 auto 0.9rem; max-width: 11ch; text-wrap: balance;">Synthetic Hair Wigs</h1>
+                    <p class="hero-sub" style="max-width: 680px; margin: 0 auto 2rem; font-size: clamp(1.1rem, 2.5vw, 1.25rem); line-height: 1.45;">
+                        Shop premium wigs with natural finish, rich volume, and fast delivery in Ghana.
+                    </p>
+                    <a href="shop.html"><button class="btn" type="button" style="padding: 16px 42px; font-size: 1.15rem;">Explore now</button></a>
                 </div>
             </div>
         </section>
@@ -103,7 +110,7 @@
 
     <footer class="site-footer">
         <div class="footer-brand">
-            <img src="images/logo.jpeg" alt="Strands" class="logo-img">
+            <img src="images/logo.png" alt="Strands" class="logo-img">
             <span class="footer-brand-name">Strands</span>
         </div>
         <nav class="footer-nav" aria-label="Footer">
